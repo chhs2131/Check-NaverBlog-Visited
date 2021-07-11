@@ -16,6 +16,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="./html5up-helios/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="./html5up-helios/assets/css/noscript.css" /></noscript>
+		<script>
+		function checkID(){
+			var inputID = document.getElementById("inputbox").value;
+			//var inputID = 'chuz2131';
+			var link = 'https://blog.naver.com/NVisitorgp4Ajax.nhn?blogId='+inputID; 
+			window.location.href=link;
+		}
+		</script>
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -33,7 +41,7 @@
 								</p>
 							</header>
 							<footer>
-								<a href="#banner" class="button circled scrolly">확인</a>
+								<button id="submit" class="button circled scrolly" onclick="checkID()">확인</button>
 							</footer>
 						</div>
 
