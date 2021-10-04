@@ -1,0 +1,71 @@
+<!---------------------------------------------------------------------
+
+    ajax 통신 테스트용 | XMLHttpRequest
+    참고사이트 : https://www.nextree.co.kr/p9521/
+
+---------------------------------------------------------------------->
+<html>
+    <head>
+        <title>ajax 통신 테스트</title>
+        <style>
+            body {
+                margin: 1rem;
+                background: #4881fe;
+            }
+            button {
+                padding: 0.5rem;
+            }
+            input[type=text] {
+                padding: 0.5rem;
+                color: #4881fe;
+            }
+            #body_box{
+                padding: 1rem;
+                text-align: center;
+                background: white;
+            }
+            #result_box{
+                font-size: small;
+                background: #88b2ff;
+            }
+        </style>
+        <script>
+            //객체 생성부분
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } 
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            var inputURL;
+            function checkURL() {
+                inputURL = document.getElementById("input_box").value;
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="body_box">
+            <div>
+                <b>요청 URL : </b>
+                <input id="input_box" type="text" />
+                <button onclick="submit_request()">제출</button>
+            </div>
+            <br/>
+            <div id="result_box">
+                동작x  결과가 표시 될 영역입니다.
+            </div>
+        </div>
+        <br/>
+
+        <script>
+            function submit_request() {
+                checkURL();
+                xmlhttp.open("GET", String(inputURL), true);
+                xmlhttp.send();
+            }
+        </script>
+    </body>
+</html>
