@@ -8,12 +8,11 @@
 
 - 개발진행중
 
-- 현재 방문자수 확인은 가능함. `xml파일 형식 (key-value)`
+- 현재 방문자수 확인은 가능함. `console log 및 임시텍스트`
 
 - LINK : https://chhs2131.github.io/Check-NaverBlog-Visited/
 
   <br/>
-
   <br/>
 
 ## 🔥 해야할일!
@@ -22,13 +21,17 @@
 
 ⬜ inputText 스타일시트 작성
 
-⬜ JS를 이용하여, ID값에 따른 예외처리
+⬜ Http Status값에 따른 예외 처리
 
 ✅ JS를 이용하여, input값을 통한 특정페이지 이동로직 작성
 
-⬜ JS를 이용하여, 특정페이지 파싱 작성
+✅ JS를 이용하여, 특정페이지 파싱 작성 (xml2json libray 이용)
 
-⬜ JS를 이용하여, 파싱한 값을 html 내부에 불러오기
+✅ JS를 이용하여, 파싱한 값을 html 내부에 불러오기
+
+⬜ BootStrap Graph를 이용하여 방문자 그래프 표시하기
+
+⬜ 추후 Chrome 확장프로그램으로 개발 가능
 
 <br/>
 

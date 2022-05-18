@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="./html5up-helios/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="./html5up-helios/assets/css/noscript.css" /></noscript>
 		<script>
-		function checkID(){
+		function checkIDdirectXML(){
 			var inputID = document.getElementById("inputbox").value;
 			//var inputID = 'chuz2131';
 			var link = 'https://blog.naver.com/NVisitorgp4Ajax.nhn?blogId='+inputID; 
@@ -76,6 +76,29 @@
 						<header>
 							<h2>사용법</h2>
 							<p>설명설명설명설명설명설명설명설명설명설명설명설명</p>
+
+							임시공간
+							<p id="v1">
+								<span id="vid1">결과가 이곳에 표시됩니다.</span>
+								<span id="vcnt1">결과가 이곳에 표시됩니다.</span>
+							</p>
+							<p id="v2">
+								<span id="vid2">결과가 이곳에 표시됩니다.</span>
+								<span id="vcnt2">결과가 이곳에 표시됩니다.</span>
+							</p>
+							<p id="v3">
+								<span id="vid3">결과가 이곳에 표시됩니다.</span>
+								<span id="vcnt3">결과가 이곳에 표시됩니다.</span>
+							</p>
+							<p id="v4">
+								<span id="vid4">결과가 이곳에 표시됩니다.</span>
+								<span id="vcnt4">결과가 이곳에 표시됩니다.</span>
+							</p>
+							<p id="v5">
+								<span id="vid5">결과가 이곳에 표시됩니다.</span>
+								<span id="vcnt5">결과가 이곳에 표시됩니다.</span>
+							</p>
+
 						</header>
 						<div class="row">
 							<article class="col-4 col-12-mobile special">
@@ -140,18 +163,63 @@
 						</div>
 					</div>
 				</div>
-
 		</div>
 
 		<!-- Scripts -->
-			<script src="./html5up-helios/assets/js/jquery.min.js"></script>
-			<script src="./html5up-helios/assets/js/jquery.dropotron.min.js"></script>
-			<script src="./html5up-helios/assets/js/jquery.scrolly.min.js"></script>
-			<script src="./html5up-helios/assets/js/jquery.scrollex.min.js"></script>
-			<script src="./html5up-helios/assets/js/browser.min.js"></script>
-			<script src="./html5up-helios/assets/js/breakpoints.min.js"></script>
-			<script src="./html5up-helios/assets/js/util.js"></script>
-			<script src="./html5up-helios/assets/js/main.js"></script>
+		<script src="./html5up-helios/assets/js/jquery.min.js"></script>
+		<script src="./html5up-helios/assets/js/jquery.dropotron.min.js"></script>
+		<script src="./html5up-helios/assets/js/jquery.scrolly.min.js"></script>
+		<script src="./html5up-helios/assets/js/jquery.scrollex.min.js"></script>
+		<script src="./html5up-helios/assets/js/browser.min.js"></script>
+		<script src="./html5up-helios/assets/js/breakpoints.min.js"></script>
+		<script src="./html5up-helios/assets/js/util.js"></script>
+		<script src="./html5up-helios/assets/js/main.js"></script>
+		
+		<script type="text/javascript" src="./js/xml2json.js" />"></script>
+		<script>
+		function checkID(){
+			var inputID = document.getElementById("inputbox").value;
+			var link = 'https://blog.naver.com/NVisitorgp4Ajax.nhn?blogId='+inputID; 
+
+			var xml2json = new XMLtoJSON();
+			var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.
+			xmlHttp.onreadystatechange = function() { // onreadystatechange 이벤트 핸들러를 작성함.
+				// 서버상에 문서가 존재하고 요청한 데이터의 처리가 완료되어 응답할 준비가 완료되었을 때
+				if(this.status == 200 && this.readyState == this.DONE) {
+					// 응답결과를 JSON으로 변환
+					var xmlResponse = xmlHttp.responseText;
+					console.log(xmlResponse);
+					var objson = xml2json.fromStr(xmlResponse);
+					console.log(objson)
+
+					var vid1 = objson.visitorcnts.visitorcnt[0]["@attributes"].id;
+					var vcnt1 = objson.visitorcnts.visitorcnt[0]["@attributes"].cnt;
+					var vid2 = objson.visitorcnts.visitorcnt[1]["@attributes"].id;
+					var vcnt2 = objson.visitorcnts.visitorcnt[1]["@attributes"].cnt;
+					var vid3 = objson.visitorcnts.visitorcnt[2]["@attributes"].id;
+					var vcnt3 = objson.visitorcnts.visitorcnt[2]["@attributes"].cnt;
+					var vid4 = objson.visitorcnts.visitorcnt[3]["@attributes"].id;
+					var vcnt4 = objson.visitorcnts.visitorcnt[3]["@attributes"].cnt;
+					var vid5 = objson.visitorcnts.visitorcnt[4]["@attributes"].id;
+					var vcnt5 = objson.visitorcnts.visitorcnt[4]["@attributes"].cnt;
+
+					// html로 출력
+					document.getElementById("vid1").innerHTML = vid1;
+					document.getElementById("vid2").innerHTML = vid2;
+					document.getElementById("vid3").innerHTML = vid3;
+					document.getElementById("vid4").innerHTML = vid4;
+					document.getElementById("vid5").innerHTML = vid5;
+					document.getElementById("vcnt1").innerHTML = vcnt1;
+					document.getElementById("vcnt2").innerHTML = vcnt2;
+					document.getElementById("vcnt3").innerHTML = vcnt3;
+					document.getElementById("vcnt4").innerHTML = vcnt4;
+					document.getElementById("vcnt5").innerHTML = vcnt5;
+				}
+			};
+			xmlHttp.open("GET", link, true);
+			xmlHttp.send();
+		}
+		</script>
 
 	</body>
 </html>

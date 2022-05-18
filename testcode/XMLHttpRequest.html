@@ -1,0 +1,66 @@
+<head>
+    <script type="text/javascript" src="../js/xml2json.js" />"></script>
+</head>
+<body>
+    <button>1</button>
+    <p id="v1">
+        <span id="vid1">결과가 이곳에 표시됩니다.</span>
+        <span id="vcnt1">결과가 이곳에 표시됩니다.</span>
+    </p>
+    <p id="v2">
+        <span id="vid2">결과가 이곳에 표시됩니다.</span>
+        <span id="vcnt2">결과가 이곳에 표시됩니다.</span>
+    </p>
+    <p id="v3">
+        <span id="vid3">결과가 이곳에 표시됩니다.</span>
+        <span id="vcnt3">결과가 이곳에 표시됩니다.</span>
+    </p>
+    <p id="v4">
+        <span id="vid4">결과가 이곳에 표시됩니다.</span>
+        <span id="vcnt4">결과가 이곳에 표시됩니다.</span>
+    </p>
+    <p id="v5">
+        <span id="vid5">결과가 이곳에 표시됩니다.</span>
+        <span id="vcnt5">결과가 이곳에 표시됩니다.</span>
+    </p>
+
+    <script>
+        var xml2json = new XMLtoJSON();
+        var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.
+        xmlHttp.onreadystatechange = function() { // onreadystatechange 이벤트 핸들러를 작성함.
+            // 서버상에 문서가 존재하고 요청한 데이터의 처리가 완료되어 응답할 준비가 완료되었을 때
+            if(this.status == 200 && this.readyState == this.DONE) {
+                // 응답결과를 JSON으로 변환
+                var xmlResponse = xmlHttp.responseText;
+                console.log(xmlResponse);
+                var objson = xml2json.fromStr(xmlResponse);
+                console.log(objson)
+
+                var vid1 = objson.visitorcnts.visitorcnt[0]["@attributes"].id;
+                var vcnt1 = objson.visitorcnts.visitorcnt[0]["@attributes"].cnt;
+                var vid2 = objson.visitorcnts.visitorcnt[1]["@attributes"].id;
+                var vcnt2 = objson.visitorcnts.visitorcnt[1]["@attributes"].cnt;
+                var vid3 = objson.visitorcnts.visitorcnt[2]["@attributes"].id;
+                var vcnt3 = objson.visitorcnts.visitorcnt[2]["@attributes"].cnt;
+                var vid4 = objson.visitorcnts.visitorcnt[3]["@attributes"].id;
+                var vcnt4 = objson.visitorcnts.visitorcnt[3]["@attributes"].cnt;
+                var vid5 = objson.visitorcnts.visitorcnt[4]["@attributes"].id;
+                var vcnt5 = objson.visitorcnts.visitorcnt[4]["@attributes"].cnt;
+
+                // html로 출력
+                document.getElementById("vid1").innerHTML = vid1;
+                document.getElementById("vid2").innerHTML = vid2;
+                document.getElementById("vid3").innerHTML = vid3;
+                document.getElementById("vid4").innerHTML = vid4;
+                document.getElementById("vid5").innerHTML = vid5;
+                document.getElementById("vcnt1").innerHTML = vcnt1;
+                document.getElementById("vcnt2").innerHTML = vcnt2;
+                document.getElementById("vcnt3").innerHTML = vcnt3;
+                document.getElementById("vcnt4").innerHTML = vcnt4;
+                document.getElementById("vcnt5").innerHTML = vcnt5;
+            }
+        };
+        xmlHttp.open("GET", "https://blog.naver.com/NVisitorgp4Ajax.nhn?blogId=chgy2131", true);
+        xmlHttp.send();
+    </script>
+</body>
